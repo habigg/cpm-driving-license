@@ -1,241 +1,53 @@
-<!DOCTYPE html><html lang="lv">
+<!DOCTYPE html>
+<html lang="lv">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CPM Driving License</title>
-  <style>
-    * { box-sizing: border-box; }body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #090b12;
-  color: #f4f6ff;
-}
-
-header {
-  padding: 24px 8%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid #242838;
-}
-
-header h2 { margin: 0; }
-
-.badge {
-  color: #9cafff;
-  font-size: 12px;
-  letter-spacing: 2px;
-}
-
-main {
-  max-width: 1100px;
-  margin: 55px auto;
-  padding: 0 20px;
-}
-
-.hero {
-  padding: 35px;
-  border: 1px solid #292e43;
-  border-radius: 22px;
-  background: linear-gradient(135deg, #171b2d, #10121d);
-}
-
-h1 { font-size: clamp(30px, 5vw, 46px); }
-
-.muted { color: #9ba3bb; }
-
-input, select, button {
-  padding: 13px;
-  border-radius: 10px;
-  border: 1px solid #30364c;
-  background: #111522;
-  color: white;
-  font-size: 15px;
-}
-
-input { width: 100%; }
-
-.filters {
-  display: grid;
-  grid-template-columns: 1fr 180px;
-  gap: 12px;
-  margin-top: 25px;
-}
-
-.stats {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 15px;
-  margin: 25px 0;
-}
-
-.card, .table-wrap {
-  background: #11141f;
-  border: 1px solid #272c3e;
-  border-radius: 15px;
-  padding: 20px;
-}
-
-.number {
-  font-size: 30px;
-  font-weight: bold;
-  margin-top: 10px;
-}
-
-.table-wrap { overflow-x: auto; }
-
-table {
-  width: 100%;
-  border-collapse: collapse;
-  min-width: 600px;
-}
-
-th, td {
-  padding: 16px 12px;
-  text-align: left;
-  border-bottom: 1px solid #272c3e;
-}
-
-th { color: #9ba3bb; font-size: 13px; }
-
-.status {
-  color: #73e4ad;
-  background: #153629;
-  padding: 7px 10px;
-  border-radius: 20px;
-  font-size: 12px;
-}
-
-.login {
-  cursor: pointer;
-  background: #6578f7;
-  border: 0;
-}
-
-footer {
-  text-align: center;
-  padding: 30px;
-  color: #777f97;
-}
-
-@media (max-width: 600px) {
-  header { padding: 20px; }
-  header h2 { font-size: 17px; }
-  .badge { display: none; }
-  .stats { grid-template-columns: 1fr; }
-  .filters { grid-template-columns: 1fr; }
-  .hero { padding: 22px; }
-}
-
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <h2>🚘 CPM Driving License</h2>
-    <span class="badge">COMMUNITY LICENSE REGISTRY</span>
-  </header>  <main>
+  <header class="navbar">
+    <div class="logo">CPM<span> LICENSE</span></div>
+    <button id="adminButton">Admin Login</button>
+  </header>
+
+  <main class="container">
     <section class="hero">
-      <p class="badge">SPĒLĒTĀJU REĢISTRS</p>
-      <h1>Driver Registry</h1>
-      <p class="muted">Apskati spēlētājus, kuri nokārtojuši tiesību eksāmenu.</p>  <div class="filters">
-    <input id="search" placeholder="Meklēt spēlētāju..." oninput="renderDrivers()">
-    <select id="category" onchange="renderDrivers()">
-      <option value="">Visas kategorijas</option>
-      <option value="A">A kategorija</option>
-      <option value="B">B kategorija</option>
-      <option value="C">C kategorija</option>
-      <option value="D">D kategorija</option>
-    </select>
-  </div>
-</section>
+      <p class="eyebrow">CAR PARKING MULTIPLAYER COMMUNITY</p>
+      <h1>Driving <span>License</span></h1>
+      <p class="subtitle">Pārbaudi spēlētāju eksāmenu rezultātus un licences statusu.</p>
+      <input id="search" type="search" placeholder="Meklēt spēlētāju...">
+    </section>
 
-<section class="stats">
-  <div class="card">
-    <div class="muted">Reģistrētie spēlētāji</div>
-    <div class="number" id="total">0</div>
-  </div>
-  <div class="card">
-    <div class="muted">Aktīvas tiesības</div>
-    <div class="number" id="active">0</div>
-  </div>
-  <div class="card">
-    <div class="muted">Kategorijas</div>
-    <div class="number">4</div>
-  </div>
-</section>
+    <section class="panel">
+      <div class="section-heading">
+        <h2>Spēlētāju saraksts</h2>
+        <span id="playerCount">0 spēlētāji</span>
+      </div>
+      <div id="players" class="players">
+        <p class="empty">Notiek datu ielāde...</p>
+      </div>
+    </section>
 
-<h2>Reģistrētie spēlētāji</h2>
-<div class="table-wrap">
-  <table>
-    <thead>
-      <tr>
-        <th>Spēlētājs</th>
-        <th>Kategorija</th>
-        <th>Teorija</th>
-        <th>Braukšana</th>
-        <th>Statuss</th>
-      </tr>
-    </thead>
-    <tbody id="drivers"></tbody>
-  </table>
-  <p id="empty" class="muted" hidden>Spēlētāji nav atrasti.</p>
-</div>
+    <section id="loginPanel" class="panel hidden">
+      <h2>Administratora pieslēgšanās</h2>
+      <p class="subtitle">Administrēšanas piekļuve.</p>
+      <form id="loginForm">
+        <label for="username">Lietotājvārds</label>
+        <input id="username" autocomplete="username" required>
+        <label for="password">Parole</label>
+        <input id="password" type="password" autocomplete="current-password" required>
+        <button type="submit">Pieteikties</button>
+        <p id="loginMessage" role="status"></p>
+      </form>
+    </section>
+  </main>
 
-  </main>  <footer>CPM Driving License · Neoficiāls kopienas projekts</footer>  <script>
-    // Piemēra ieraksti. Tos vēlāk aizstāsim ar kopīgu datubāzi.
-    const drivers = [
-      {
-        username: "DemoPlayer01",
-        category: "B",
-        theory: "Nokārtots",
-        driving: "Nokārtots",
-        status: "Aktīvas"
-      },
-      {
-        username: "DemoPlayer02",
-        category: "A",
-        theory: "Nokārtots",
-        driving: "Nav kārtots",
-        status: "Nav izsniegtas"
-      }
-    ];
+  <footer>
+    <p>CPM Driving License · Neoficiāls kopienas projekts, nav CSDD vietne.</p>
+  </footer>
 
-    function renderDrivers() {
-      const search = document.getElementById("search").value.toLowerCase();
-      const category = document.getElementById("category").value;
-
-      const filtered = drivers.filter(driver =>
-        driver.username.toLowerCase().includes(search) &&
-        (!category || driver.category === category)
-      );
-
-      document.getElementById("total").textContent = drivers.length;
-      document.getElementById("active").textContent =
-        drivers.filter(d => d.status === "Aktīvas").length;
-
-      document.getElementById("drivers").innerHTML = filtered.map(d => `
-        <tr>
-          <td>${escapeHTML(d.username)}</td>
-          <td>${escapeHTML(d.category)}</td>
-          <td>${escapeHTML(d.theory)}</td>
-          <td>${escapeHTML(d.driving)}</td>
-          <td>${escapeHTML(d.status)}</td>
-        </tr>
-      `).join("");
-
-      document.getElementById("empty").hidden = filtered.length > 0;
-    }
-
-    function escapeHTML(value) {
-      return String(value).replace(/[&<>"']/g, char => ({
-        "&": "&amp;",
-        "<": "&lt;",
-        ">": "&gt;",
-        '"': "&quot;",
-        "'": "&#39;"
-      })[char]);
-    }
-
-    renderDrivers();
-  </script></body>
+  <script src="script.js"></script>
+</body>
 </html>
