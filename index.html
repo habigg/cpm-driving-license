@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="lv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CPM Driving License</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="navbar">
+    <div class="logo">CPM<span> LICENSE</span></div>
+    <button id="adminButton">Admin Login</button>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <p class="eyebrow">CAR PARKING MULTIPLAYER COMMUNITY</p>
+      <h1>Driving <span>License</span></h1>
+      <p class="subtitle">Pārbaudi spēlētāju eksāmenu rezultātus un licences statusu.</p>
+      <input id="search" type="search" placeholder="Meklēt spēlētāju...">
+    </section>
+
+    <section class="panel">
+      <div class="section-heading">
+        <h2>Spēlētāju saraksts</h2>
+        <span id="playerCount">0 spēlētāji</span>
+      </div>
+      <div id="players" class="players">
+        <p class="empty">Notiek datu ielāde...</p>
+      </div>
+    </section>
+
+    <section id="loginPanel" class="panel hidden">
+      <h2>Administratora pieslēgšanās</h2>
+      <p class="subtitle">Administrēšanas piekļuve.</p>
+      <form id="loginForm">
+        <label for="username">Lietotājvārds</label>
+        <input id="username" autocomplete="username" required>
+        <label for="password">Parole</label>
+        <input id="password" type="password" autocomplete="current-password" required>
+        <button type="submit">Pieteikties</button>
+        <p id="loginMessage" role="status"></p>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <p>CPM Driving License · Neoficiāls kopienas projekts, nav CSDD vietne.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
