@@ -1,0 +1,20 @@
+{
+  "players": [
+    {
+      "id": 1,
+      "username": "ExampleDriver",
+      "category": "B",
+      "theory": "passed",
+      "driving": "passed",
+      "license": "issued"
+    },
+    {
+      "id": 2,
+      "username": "NewDriver",
+      "category": "B",
+      "theory": "pending",
+      "driving": "pending",
+      "license": "not_issued"
+    }
+  ]
+}
